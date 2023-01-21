@@ -1,6 +1,6 @@
-# cse445
+# Rental Management System
 
-Central repository for all resources related to CSE445 - capstone project. 
+A website where the owner of a PG/Rent business can efficiently handle all activities related to rent mangement
 
 # Technologies
 
@@ -16,11 +16,12 @@ Central repository for all resources related to CSE445 - capstone project.
 # Helpful Resources
 
 1. Git
-    1. [Basics](https://git-scm.com/book/en/v2) (read atleast the first two chapters)
-    2. [Commits and Branches](https://learngitbranching.js.org/) (interactive tutorial)
+
+   1. [Basics](https://git-scm.com/book/en/v2) (read atleast the first two chapters)
+   2. [Commits and Branches](https://learngitbranching.js.org/) (interactive tutorial)
 
 2. Javascript
-    1. [The Modern JavaScript Tutorial](https://javascript.info/)
+   1. [The Modern JavaScript Tutorial](https://javascript.info/)
 
 Besides these, you are advised to read docs of all the technologies mentioned above.
 
@@ -30,13 +31,3 @@ Besides these, you are advised to read docs of all the technologies mentioned ab
 2. Have the latest version of nodeJS and npm installed on your system.
 3. Press the watch button above to recieve important updates.
 4. install prettier and eslint extension on vscode - to have consistent linting and formatting.
-
-
-# Remarks
-
-1. This repository is in draft state until the project name is decided.
-2. The goal of this project is to get things done and get them done the right way.
-
-# Todo
-
-1. Decide a Good Project Topic
