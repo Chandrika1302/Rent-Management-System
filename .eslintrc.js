@@ -9,7 +9,10 @@ module.exports = {
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   plugins: ["react"],
-  rules: {},
+  rules: { "react/react-in-jsx-scope": "off" },
 };
