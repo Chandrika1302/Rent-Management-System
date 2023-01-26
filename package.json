@@ -1,0 +1,29 @@
+{
+  "name": "rent-management-system",
+  "version": "1.0.0",
+  "description": "A website where the owner of a PG/Rent business can efficiently handle all activities related to rent mangement",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "test": "echo \"No tests to run, exiting without errors\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prince-thind/rent-management-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prince-thind/rent-management-system/issues"
+  },
+  "homepage": "https://github.com/prince-thind/rent-management-system#readme",
+  "devDependencies": {
+    "eslint": "^8.32.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-react": "^7.32.1",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.3"
+  }
+}
