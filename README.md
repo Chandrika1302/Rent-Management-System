@@ -2,10 +2,18 @@
 
 A website where the owner of a PG/Rent business can efficiently handle all activities related to rent mangement
 
+# How to run
+
+```
+1. cd client
+2. npm install
+3. npm run dev
+```
+
 # Technologies
 
 1. Vite - Bundler
-2. Typescript - For Robust typing
+2. PropTypes - For React typing
 3. React - Main Frontend Framework
 4. Redux - state management
 5. React-Routes - frontend routing
