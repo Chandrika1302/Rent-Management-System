@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-files=$(git diff --name-only --cached '*.js')
+files=$(git diff --name-only --cached '*.js*')
 
 if [ $files ] ; then
 npx prettier --check $files;
