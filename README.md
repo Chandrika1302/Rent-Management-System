@@ -10,6 +10,12 @@ A website where the owner of a PG/Rent business can efficiently handle all activ
 3. npm run dev
 ```
 
+# Recommnded Tools
+
+1. Redux Dev Tools: [Firefox](https://addons.mozilla.org/en-US/firefox/addon/reduxdevtools/) | [Chrome](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
+
+2. React Dev Tools: [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) | [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+
 # Technologies
 
 1. Vite - Bundler
@@ -33,7 +39,7 @@ A website where the owner of a PG/Rent business can efficiently handle all activ
 
 Besides these, you are advised to read docs of all the technologies mentioned above.
 
-# Recommended stuff
+# Other Recommended stuff
 
 1. Use Linux - makes a lot of things easier.
 2. Have the latest version of nodeJS and npm installed on your system.
