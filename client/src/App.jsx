@@ -4,6 +4,7 @@ import Logout from "./pages/Logout";
 import Home from "./pages/Home";
 import Layout from "./layout/Layout";
 import Error404 from "./layout/Error404";
+import { RouterProvider } from "react-router-dom";
 
 const router = createHashRouter([
   {
@@ -27,4 +28,6 @@ const router = createHashRouter([
   },
 ]);
 
-export default router;
+export default function App() {
+  return <RouterProvider router={router} />;
+}
