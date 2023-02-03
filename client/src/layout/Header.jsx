@@ -66,7 +66,9 @@ const ResponsiveAppBar = () => {
               textDecoration: "none",
             }}
           >
-            <CustomLink to="/">RMS </CustomLink>
+            <CustomLink to="/">
+              <span>RMS</span>
+            </CustomLink>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

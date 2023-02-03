@@ -13,7 +13,7 @@ function CustomLink({ color = "white", children, to }) {
 CustomLink.propTypes = {
   color: PropTypes.string,
   to: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.node,
 };
 
 export default CustomLink;
