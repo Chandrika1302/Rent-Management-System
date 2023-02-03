@@ -11,6 +11,14 @@ From the root of the project type the following in your terminal:
 2. npm start
 ```
 
+# Default username and password for testing:
+
+```
+username: abc
+
+password: 123
+```
+
 # WIP LINK
 
 [LINK](https://prince-thind.github.io/cse445)
