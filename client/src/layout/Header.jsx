@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router";
+import { useSelector } from "react-redux";
 
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -14,15 +15,20 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import BedroomParentIcon from "@mui/icons-material/BedroomParentOutlined";
+import WarningIcon from "@mui/icons-material/Warning";
 
 import CustomLink from "../components/ui/CustomLink";
+import { selectUserName } from "../features/user/userSlice";
 
 const pages = [
   { name: "Home", url: "/" },
   { name: "Summary", url: "/summary" }, //TODO stuff
   { name: "About", url: "/about" }, //TODO stuff
 ];
-const settings = [{ name: "About", url: "/about" }];
+const settings = [
+  { name: "About", url: "/about" },
+  { name: "Logout", url: "/logout" },
+];
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -44,6 +50,17 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const username = useSelector(selectUserName);
+  let displayUsername = username;
+
+  if (displayUsername == null) {
+    displayUsername = (
+      <Tooltip title="Not logged in" sx={{ color: "yellow" }}>
+        <WarningIcon />
+      </Tooltip>
+    );
+  }
 
   return (
     <AppBar position="static">
@@ -151,6 +168,8 @@ const ResponsiveAppBar = () => {
             })}
           </Box>
 
+          <Box sx={{ flexGrow: 0 }}>{displayUsername}</Box>
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Other Options">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -174,8 +193,8 @@ const ResponsiveAppBar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <CustomLink to={setting.url} color="black" key={setting}>
-                  <MenuItem key={setting.name} onClick={handleCloseUserMenu}>
+                <CustomLink to={setting.url} color="black" key={setting.name}>
+                  <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting.name}</Typography>
                   </MenuItem>{" "}
                 </CustomLink>
