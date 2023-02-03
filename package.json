@@ -6,7 +6,11 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "test": "echo \"No tests to run, exiting without errors\""
+    "test": "echo \"No tests to run, exiting without errors\"",
+    "initialize": "cd client && npm i && cd ../api && npm i",
+    "start:client": "cd client && npm start",
+    "start:server": "cd api && npm run watch",
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +24,7 @@
   },
   "homepage": "https://github.com/prince-thind/rent-management-system#readme",
   "devDependencies": {
+    "concurrently": "^7.6.0",
     "eslint": "^8.32.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-react": "^7.32.1",
