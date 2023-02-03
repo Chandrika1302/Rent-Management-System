@@ -20,16 +20,6 @@ import WarningIcon from "@mui/icons-material/Warning";
 import CustomLink from "../components/ui/CustomLink";
 import { selectUserName } from "../features/user/userSlice";
 
-const pages = [
-  { name: "Home", url: "/" },
-  { name: "Summary", url: "/summary" }, //TODO stuff
-  { name: "About", url: "/about" }, //TODO stuff
-];
-const settings = [
-  { name: "About", url: "/about" },
-  { name: "Logout", url: "/logout" },
-];
-
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -53,6 +43,20 @@ const ResponsiveAppBar = () => {
 
   const username = useSelector(selectUserName);
   let displayUsername = username;
+
+  const pages = [
+    { name: "Home", url: "/" },
+    { name: "Summary", url: "/summary" }, //TODO stuff
+    { name: "About", url: "/about" }, //TODO stuff
+  ];
+
+  const settings = [
+    { name: "About", url: "/about" },
+    {
+      name: displayUsername ? "Logout" : "Login",
+      url: displayUsername ? "/logout" : "/login",
+    },
+  ];
 
   if (displayUsername == null) {
     displayUsername = (
