@@ -9,6 +9,7 @@ import Grow from "@mui/material/Grow";
 import validateLogin from "../utils/validateLogin";
 import { login } from "../userSlice";
 import { useState } from "react";
+import { showErrorToast, showSuccessToast } from "../utils/toasts";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -45,9 +46,9 @@ export default function Login() {
     if (isUserValid) {
       dispatch(login({ name: username })); //TODO handle token too
       navigate("/");
-      //TODO display success toast
+      showSuccessToast();
     } else {
-      //TODO display error toast
+      showErrorToast();
     }
     setLoading(false);
   }

@@ -1,7 +1,8 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Box, Container } from "@mui/material";
 
 import Header from "./Header";
@@ -28,6 +29,7 @@ function Layout({ children }) {
   return (
     <Box>
       <Header />
+      <ToastContainer />
       <Container sx={{ mt: 3 }}>
         <Outlet />
         {children}
