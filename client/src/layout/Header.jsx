@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useLocation } from "react-router";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -12,8 +14,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import BedroomParentIcon from "@mui/icons-material/BedroomParentOutlined";
-import CustomLink from "./CustomLink";
-import { useLocation } from "react-router";
+
+import CustomLink from "../components/ui/CustomLink";
 
 const pages = [
   { name: "Home", url: "/" },

@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import BottomNavigation from "@mui/material/BottomNavigation";
@@ -6,7 +8,6 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import Paper from "@mui/material/Paper";
 import SummarizeOutlinedIcon from "@mui/icons-material/SummarizeOutlined";
-import { useNavigate } from "react-router-dom";
 
 export default function FixedBottomNavigation() {
   const navigate = useNavigate();
