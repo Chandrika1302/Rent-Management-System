@@ -17,8 +17,11 @@ function Layout({ children }) {
 
   useEffect(() => {
     if (user == null && path != "/login") {
-      //TODO properly validate user
-      navigate("/login");
+      return navigate("/login");
+    }
+
+    if (user !== null && path == "/login") {
+      return navigate("/");
     }
   }, [path, user]);
 
