@@ -8,9 +8,11 @@
     "prepare": "husky install",
     "test": "echo \"No tests to run, exiting without errors\"",
     "initialize": "npm i && cd client && npm i && cd ../api && npm i",
+    "build:client": "cd client && npm i && npm run build",
     "start:client": "cd client && npm start",
     "start:server": "cd api && npm run watch",
-    "start": "concurrently \"npm run start:client\" \"npm run start:server\""
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
+    "start:production": "cd api && npm start"
   },
   "repository": {
     "type": "git",

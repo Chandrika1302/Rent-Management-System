@@ -1,4 +1,4 @@
-const origin = "http://localhost:3000";
+const origin = ""; //origin is same for deployment, for development it's proxied in vite config
 
 export default async function apiFetch(path, props) {
   try {
