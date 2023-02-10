@@ -14,12 +14,12 @@ exports.login_POST = async function (req, res) {
     res.sendStatus(403);
   } else {
     const token = jwt.sign({ username }, process.env.TOKEN_KEY);
-    res.send(token);
+    res.json({ token });
   }
 };
 
 exports.logout = function (req, res) {
   //   res.clearCookie("token");
   //   res.redirect("/");
-  res.send("TODO");
+  res.send("#TODO");
 };

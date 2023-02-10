@@ -38,13 +38,13 @@ export default function Login() {
     const password = formData.password;
 
     setLoading(true);
-    const isUserValid = await validateLogin({
-      username: username,
-      password: password,
+    const res = await validateLogin({
+      username,
+      password,
     });
 
-    if (isUserValid) {
-      dispatch(login({ name: username })); //TODO handle token too
+    if (res.token) {
+      dispatch(login({ name: username, token: res.token }));
       navigate("/");
       showSuccessToast();
     } else {

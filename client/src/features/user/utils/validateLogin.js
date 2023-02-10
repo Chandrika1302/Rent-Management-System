@@ -1,13 +1,15 @@
+import apiFetch from "../../../lib/apiFetch";
+
 export default async function validateLogin({ username, password }) {
-  await sleep(3); //simulate fetch call
-  //TODO actually implemnet api validation
-  if (username == "abc" && password == "123") {
-    return true;
+  const res = await apiFetch("/api/login", {
+    body: {
+      username,
+      password,
+    },
+  });
+
+  if (res.error != undefined) {
+    return { error: res.error };
   }
-
-  return false;
-}
-
-async function sleep(n) {
-  return new Promise((r) => setTimeout(r, n * 1000));
+  return { token: res.token };
 }
