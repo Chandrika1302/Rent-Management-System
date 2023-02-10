@@ -2,7 +2,7 @@ const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
 exports.index = function (req, res) {
-  res.send("#TODO");
+  res.sendStatus(403);
 };
 
 exports.login_POST = async function (req, res) {
@@ -11,7 +11,7 @@ exports.login_POST = async function (req, res) {
 
   const dbUser = await User.findOne({ username, password });
   if (!dbUser) {
-    res.sendStatus(403);
+    res.sendStatus(404);
   } else {
     const token = jwt.sign({ username }, process.env.TOKEN_KEY);
     res.json({ token });
@@ -21,5 +21,6 @@ exports.login_POST = async function (req, res) {
 exports.logout = function (req, res) {
   //   res.clearCookie("token");
   //   res.redirect("/");
+  //implement refresh tokens here
   res.send("#TODO");
 };
