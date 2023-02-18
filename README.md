@@ -11,6 +11,16 @@ From the root of the project type the following in your terminal:
 2. npm start
 ```
 
+# Database Seeding
+
+MongoDB database can be seeded with the default test values using the script found in api/utils/seedDB.js.
+Alternatively, run the following from project root:
+
+```
+cd api
+npm run seed
+```
+
 # Default username and password for testing:
 
 ```
