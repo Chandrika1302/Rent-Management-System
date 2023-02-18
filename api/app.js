@@ -9,6 +9,7 @@ const logger = require("morgan");
 
 const authenticate = require("./middleware/authenticate");
 const indexRouter = require("./routes/index");
+const roomsRouter = require("./routes/rooms");
 
 const app = express();
 
@@ -35,5 +36,6 @@ app.get("/", (req, res) => {
 
 app.use(authenticate);
 app.use("/api", indexRouter);
+app.use("/api/rooms", roomsRouter);
 
 module.exports = app;

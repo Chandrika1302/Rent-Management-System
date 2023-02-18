@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Grow from "@mui/material/Grow";
 
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -12,9 +13,11 @@ import {
   showErrorToast,
   showSuccessToast,
 } from "../../../components/ui/toasts.js";
+import { selectToken } from "../../user/userSlice";
 
 export default function CreateRoom() {
   const navigate = useNavigate();
+  const token = useSelector(selectToken);
   const [loading, setLoading] = useState(false);
 
   const fields = {
@@ -36,10 +39,10 @@ export default function CreateRoom() {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
     const roomNumber = formData.roomNumber;
-    const baseRent = formData.password;
+    const baseRent = formData.baseRent;
 
     setLoading(true);
-    const { error } = await createRoom({ baseRent, roomNumber });
+    const { error } = await createRoom({ baseRent, roomNumber, token });
 
     if (!error) {
       navigate("/rooms");

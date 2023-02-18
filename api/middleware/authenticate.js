@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 module.exports = function authenticate(req, res, next) {
-  const token = req.cookies["token"];
+  const token = req.headers.authorization.split(" ")?.[1];
   const url = req.url;
   const uncheckedRoutes = ["/api/login", "/api/logout", "/"];
 
