@@ -5,7 +5,7 @@ export default async function apiFetch(path, props) {
     const res = await fetch(origin + path, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${props.token}`,
+        Authorization: `Bearer ${props.token ?? ""}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(props.body),
