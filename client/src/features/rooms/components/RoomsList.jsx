@@ -9,7 +9,7 @@ import RoomCard from "./RoomCard";
 
 export default function Allrooms() {
   const [rooms, setRooms] = useState([]);
-  const [fetching, setFetching] = useState(false);
+  const [fetching, setFetching] = useState(true);
   const token = useSelector(selectToken);
 
   useEffect(() => {

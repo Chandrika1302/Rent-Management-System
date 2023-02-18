@@ -20,8 +20,7 @@ module.exports = function authenticate(req, res, next) {
       User.findOne({ username: tokenUser }, (err, dbUser) => {
         if (err) next(err);
         if (dbUser) {
-          res.locals.username = dbUser.username;
-          res.locals.email = dbUser.email;
+          req.user = dbUser;
           next();
         } else {
           res.sendStatus(403);

@@ -1,17 +1,20 @@
 const Room = require("../models/Room");
 
 exports.index = async function (req, res) {
-  const rooms = await Room.find({}).lean();
+  const user = req.user;
+  const rooms = await Room.find({ userId: user.id }).lean();
   res.json(rooms);
 };
 
 exports.create_room_POST = async function (req, res) {
   const roomNumber = req.body.roomNumber;
   const baseRent = req.body.baseRent;
+  const user = req.user;
 
   const room = new Room({
     roomNumber,
     baseRent,
+    userId: user.id,
   });
 
   try {
