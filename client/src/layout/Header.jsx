@@ -46,7 +46,7 @@ const ResponsiveAppBar = () => {
 
   const pages = [
     { name: "Home", url: "/" },
-    { name: "Summary", url: "/summary" }, //TODO stuff
+    { name: "Rooms", url: "/rooms" }, 
     { name: "About", url: "/about" }, //TODO stuff
   ];
 

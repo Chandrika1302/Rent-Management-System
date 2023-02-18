@@ -1,57 +1,51 @@
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
 import Form from "../../../components/form/Form";
+import createRoom from "../utils/createRoom.js";
 
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Grow from "@mui/material/Grow";
-import validateLogin from "../utils/validateLogin";
-import { login } from "../userSlice";
+
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   showErrorToast,
   showSuccessToast,
 } from "../../../components/ui/toasts.js";
 
-export default function Login() {
-  const dispatch = useDispatch();
+export default function CreateRoom() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const fields = {
-    username: {
-      placeHolder: "Your Username",
+    roomNumber: {
+      placeHolder: "Room Number",
       required: true,
       type: "text",
       value: "",
     },
-    password: {
-      placeHolder: "Your Password",
+    baseRent: {
+      placeHolder: "Base Rent",
       required: true,
-      type: "password",
-      value: "",
+      type: "text",
+      value: "2000",
     },
   };
 
   async function onSubmit(e) {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
-    const username = formData.username;
-    const password = formData.password;
+    const roomNumber = formData.roomNumber;
+    const baseRent = formData.password;
 
     setLoading(true);
-    const res = await validateLogin({
-      username,
-      password,
-    });
+    const { error } = await createRoom({ baseRent, roomNumber });
 
-    if (res.token) {
-      dispatch(login({ name: username, token: res.token }));
-      navigate("/");
-      showSuccessToast("Logged in Successfully");
+    if (!error) {
+      navigate("/rooms");
+      showSuccessToast("Room Created");
     } else {
-      showErrorToast("Username or Password Incorrect");
+      showErrorToast("Unknown Error Occured");
     }
     setLoading(false);
   }
@@ -64,7 +58,7 @@ export default function Login() {
           component="h3"
           sx={{ display: "flex", justifyContent: "center" }}
         >
-          Login
+          Create Room
         </Typography>
         <Form fields={fields} onSubmit={onSubmit} loading={loading} />;
       </Box>

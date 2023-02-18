@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 
-export function showSuccessToast() {
-  toast.success("Logged in Successfully", {
+export function showSuccessToast(text) {
+  toast.success(text, {
     position: "top-right",
     autoClose: 1000,
     hideProgressBar: true,
@@ -13,8 +13,8 @@ export function showSuccessToast() {
   });
 }
 
-export function showErrorToast() {
-  toast.error("Username or Password Incorrect!", {
+export function showErrorToast(text) {
+  toast.error(text, {
     position: "top-right",
     autoClose: 2000,
     hideProgressBar: true,
