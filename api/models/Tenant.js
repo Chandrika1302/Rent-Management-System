@@ -7,5 +7,5 @@ const tenantSchema = new Schema({
   name: { type: String },
 });
 
-const Tenant = mongoose.model("Room", tenantSchema);
+const Tenant = mongoose.model("Tenant", tenantSchema);
 module.exports = Tenant;

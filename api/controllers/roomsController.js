@@ -15,6 +15,7 @@ exports.create_room_POST = async function (req, res) {
     roomNumber,
     baseRent,
     userId: user.id,
+    balance:0
   });
 
   try {
