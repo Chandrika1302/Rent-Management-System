@@ -1,13 +1,13 @@
 import Grid from "@mui/material/Grid";
 import Grow from "@mui/material/Grow";
 import Typography from "@mui/material/Typography";
-import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { selectToken } from "../../user/userSlice";
-import fetchRooms from "../utils/fetchRooms";
-import RoomCard from "./RoomCard";
+import { useState, useEffect } from "react";
+import RoomCard from "./components/RoomCard";
+import { selectToken } from "../user/userSlice.js";
+import fetchRooms from "./utils/fetchRooms.js";
 
-export default function Allrooms() {
+function AllRooms() {
   const [rooms, setRooms] = useState([]);
   const [fetching, setFetching] = useState(true);
   const token = useSelector(selectToken);
@@ -31,7 +31,11 @@ export default function Allrooms() {
   }
 
   if (fetching) {
-    return <div>loading...</div>;
+    return (
+      <Typography variant="h2" component="h2">
+        Loading...
+      </Typography>
+    );
   }
 
   return (
@@ -39,7 +43,7 @@ export default function Allrooms() {
       <Grid container spacing={2}>
         {rooms.map((room) => {
           return (
-            <Grid item xs={12} md={4} lg={3} key={room.id}>
+            <Grid item xs={12} md={4} lg={3} key={room._id}>
               <RoomCard room={room} />
             </Grid>
           );
@@ -48,3 +52,5 @@ export default function Allrooms() {
     </Grow>
   );
 }
+
+export default AllRooms;

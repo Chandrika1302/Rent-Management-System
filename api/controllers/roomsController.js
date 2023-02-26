@@ -1,8 +1,12 @@
 const Room = require("../models/Room");
+const Tenant = require("../models/Tenant");
 
 exports.index = async function (req, res) {
   const user = req.user;
   const rooms = await Room.find({ userId: user.id }).lean();
+  for (const room of rooms) {
+    room.tenants = await Tenant.find({ room: room._id }).lean();
+  }
   res.json(rooms);
 };
 

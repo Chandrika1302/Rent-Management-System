@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 import Home from "./pages/Home";
-import Room from "./pages/Room.jsx";
+import Rooms from "./pages/Rooms.jsx";
 import Layout from "./layout/Layout";
 import Error404 from "./layout/Error404";
 import CreateRoom from "./features/rooms/components/CreateRoom.jsx";
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "rooms/",
-        element: <Room />,
+        element: <Rooms />,
         exact: true,
       },
       {
