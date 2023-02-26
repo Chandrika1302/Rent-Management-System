@@ -22,17 +22,17 @@ export default function FixedBottomNavigation() {
       >
         <BottomNavigation showLabels>
           <BottomNavigationAction
-            label="Summary"
+            label="New Room"
             icon={<SummarizeOutlinedIcon />}
             onClick={() => {
-              navigate("/summary");
+              navigate("/rooms/create");
             }}
           />
           <BottomNavigationAction
-            label="All"
+            label="New Tenant"
             icon={<LibraryBooksIcon />}
             onClick={() => {
-              navigate("/");
+              navigate("/tenants/create");
             }}
           />
         </BottomNavigation>

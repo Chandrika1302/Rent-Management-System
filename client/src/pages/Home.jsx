@@ -1,9 +1,4 @@
-import { Link } from "react-router-dom";
-
+import HomePage from "../features/home/components/index.jsx";
 export default function Home() {
-  return (
-    <div>
-      Home stuff <Link to={`/logout`}>logout</Link>
-    </div>
-  );
+  return <HomePage />;
 }

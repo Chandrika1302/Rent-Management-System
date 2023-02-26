@@ -63,7 +63,7 @@ export default function CreateRoom() {
         >
           Create Room
         </Typography>
-        <Form fields={fields} onSubmit={onSubmit} loading={loading} />;
+        <Form fields={fields} onSubmit={onSubmit} loading={loading} />
       </Box>
     </Grow>
   );
