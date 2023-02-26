@@ -6,6 +6,7 @@ import Rooms from "./pages/Rooms.jsx";
 import Layout from "./layout/Layout";
 import Error404 from "./layout/Error404";
 import CreateRoom from "./features/rooms/components/CreateRoom.jsx";
+import RoomPage from "./features/rooms/components/RoomPage.jsx";
 import { RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
         path: "rooms/create/",
         exact: true,
         element: <CreateRoom />,
+      },
+      {
+        path: "rooms/:id/",
+        exact: true,
+        element: <RoomPage />,
       },
     ],
   },

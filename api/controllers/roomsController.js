@@ -10,6 +10,18 @@ exports.index = async function (req, res) {
   res.json(rooms);
 };
 
+exports.getRoom = async function (req, res) {
+  //const user = req.user;
+  const roomId = req.params.id;
+  try {
+    const room = await Room.findById(roomId).lean();
+    room.tenants = await Tenant.find({ room: room?._id }).lean();
+    res.json(room);
+  } catch (e) {
+    res.json({ error: e.msg });
+  }
+};
+
 exports.create_room_POST = async function (req, res) {
   const roomNumber = req.body.roomNumber;
   const baseRent = req.body.baseRent;
