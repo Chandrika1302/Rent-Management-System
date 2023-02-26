@@ -12,16 +12,17 @@ export default function BasicCard() {
           Welcome to
         </Typography>
         <Typography variant="h3" component="div">
-          RMS
+          RMS{" "}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
           a React+Redux Application with express backend
         </Typography>
         <Typography variant="body2">
-          RMS, short for Rent-management-system is a project made to demonstrate
+          RMS, short for Rent Management System is a project made to demonstrate
           application of react+redux with MUI and express as backend.
           <br />
-          Feel free to explore around
+          Visit the pages linked in the header to find more about the features
+          of this application.
         </Typography>
       </CardContent>
       <CardActions>

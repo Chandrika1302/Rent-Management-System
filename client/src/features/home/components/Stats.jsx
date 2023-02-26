@@ -9,7 +9,7 @@ export default function Stats({ totalRooms, totalTenants }) {
   return (
     <Box>
       <Typography variant="h5" component="div" sx={{ m: 1, mt: 4 }}>
-        Here are some Stats for you:
+        Some Stats:
       </Typography>
       <Grid container spacing={2}>
         <Grid item md={6} xs={12}>
@@ -44,6 +44,6 @@ export default function Stats({ totalRooms, totalTenants }) {
 }
 
 Stats.propTypes = {
-  totalTenants: PropTypes.number,
-  totalRooms: PropTypes.number,
+  totalTenants: PropTypes.string,
+  totalRooms: PropTypes.string,
 };
