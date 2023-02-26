@@ -18,6 +18,6 @@ module.exports = {
       version: "^18.2.0",
     },
   },
-  plugins: ["react"],
+  plugins: ["react","html"],
   rules: { "react/react-in-jsx-scope": "off" },
 };
