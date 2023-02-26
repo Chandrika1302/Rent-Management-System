@@ -37,8 +37,8 @@ async function main() {
         userId: user.id,
         name: `name${i}-${j}`,
         email: `email${i}.${j}@gmail.com`,
+        room:room.id,
       });
-      room.tenants.push(tenant.id);
       await tenant.save();
     }
     await room.save();

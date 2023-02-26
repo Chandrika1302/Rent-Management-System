@@ -8,6 +8,7 @@ const transactionSchema = new Schema({
   presentBalance: { type: Number },
   remarks: { type: String },
   date: { type: Date },
+  room: { type: Schema.Types.ObjectId, ref: "Room" },
 });
 
 const Transaction = mongoose.model("Transaction", transactionSchema);
