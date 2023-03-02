@@ -6,7 +6,12 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 
-export default function Form({ onSubmit, fields, loading }) {
+export default function Form({
+  onSubmit,
+  fields,
+  loading,
+  additionalComponents = [],
+}) {
   const [fieldsData, setFieldsData] = useState(structuredClone(fields));
 
   function onChangeHandler(e) {
@@ -45,6 +50,8 @@ export default function Form({ onSubmit, fields, loading }) {
         );
       })}
 
+      {additionalComponents.map((c) => c)}
+
       <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
         {loading ? (
           <CircularProgress />
@@ -62,4 +69,5 @@ Form.propTypes = {
   fields: PropTypes.object,
   onSubmit: PropTypes.func,
   loading: PropTypes.bool,
+  additionalComponents: PropTypes.array,
 };

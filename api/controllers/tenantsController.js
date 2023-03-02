@@ -1,4 +1,5 @@
 const Tenant = require("../models/Tenant");
+const Room = require("../models/Room");
 
 exports.index = async function (req, res) {
   const user = req.user;
@@ -16,15 +17,19 @@ exports.getTenant = async function (req, res) {
   }
 };
 exports.create_tenant_POST = async function (req, res) {
-  const tenantNumber = req.body.roomNumber;
-  const baseRent = req.body.baseRent;
+  const name = req.body.name;
+  const phoneNumber = req.body.phoneNumber;
+  const aadharCard = req.body.aadharCard;
+  const roomNumber = req.body.room;
   const user = req.user;
 
+  const room = await Room.findOne({ roomNumber });
   const tenant = new Tenant({
-    tenantNumber,
-    baseRent,
+    name,
+    phoneNumber,
+    aadharCard,
+    room: room.id,
     userId: user.id,
-    balance: 0,
   });
 
   try {

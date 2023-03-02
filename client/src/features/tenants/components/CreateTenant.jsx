@@ -21,29 +21,49 @@ export default function CreateTenant() {
   const [loading, setLoading] = useState(false);
 
   const fields = {
-    tenantNumber: {
-      placeHolder: "Tenant Number",
+    name: {
+      placeHolder: "Name of the Occupant",
       required: true,
       type: "text",
       value: "",
     },
-    baseRent: {
-      placeHolder: "Base Rent",
+    phoneNumber: {
+      placeHolder: "Phone Number",
       required: true,
-      type: "text",
-      value: "2000",
+      type: "number",
+      value: "",
+    },
+    aadharCard: {
+      placeHolder: "Aadhar Card Number",
+      required: true,
+      type: "number",
+      value: "",
+    },
+    room: {
+      placeHolder: "Room Number",
+      required: true,
+      type: "number",
+      value: "",
     },
   };
 
   async function onSubmit(e) {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
-    const tenantNumber = formData.tenantNumber;
-    const baseRent = formData.baseRent;
-
+    const name = formData.name;
+    const phoneNumber = formData.phoneNumber;
+    const aadharCard = formData.aadharCard;
+    const room = formData.room;
     setLoading(true);
-    const { error } = await createTenant({ baseRent, tenantNumber, token });
+    const res = await createTenant({
+      name,
+      phoneNumber,
+      aadharCard,
+      room,
+      token,
+    });
 
+    const error = res.error;
     if (!error) {
       navigate("/tenants");
       showSuccessToast("Tenant Created");
