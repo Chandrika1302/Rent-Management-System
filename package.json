@@ -6,7 +6,6 @@
   "private": true,
   "scripts": {
     "prepare": "husky install",
-    "test": "echo \"No tests to run, exiting without errors\"",
     "initialize": "npm i && cd client && npm i && cd ../api && npm i",
     "build:client": "cd client && npm i && npm run build",
     "start:client": "cd client && npm start",

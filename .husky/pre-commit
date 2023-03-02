@@ -7,5 +7,3 @@ if [ "$files" ] ; then
 npx prettier --check $files;
 npx eslint $files;
 fi;
-
-npm run test
