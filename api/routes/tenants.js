@@ -3,10 +3,10 @@ const router = express.Router();
 
 const tenantsController = require("../controllers/tenantsController");
 
-router.post("/", tenantsController.index);
+router.get("/", tenantsController.index);
 
-router.post("/create", tenantsController.create_tenant_POST);
+router.post("/create", tenantsController.create_post);
 
-router.post("/:id", tenantsController.getTenant);
+router.get("/:id", tenantsController.detail);
 
 module.exports = router;

@@ -1,5 +1,4 @@
 import Form from "../../../components/form/Form";
-import createRoom from "../utils/createRoom.js";
 
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -14,6 +13,7 @@ import {
   showSuccessToast,
 } from "../../../components/ui/toasts.js";
 import { selectToken } from "../../user/userSlice";
+import apiFetch from "../../../lib/apiFetch";
 
 export default function CreateRoom() {
   const navigate = useNavigate();
@@ -42,13 +42,20 @@ export default function CreateRoom() {
     const baseRent = formData.baseRent;
 
     setLoading(true);
-    const { error } = await createRoom({ baseRent, roomNumber, token });
-
-    if (!error) {
-      navigate("/rooms");
+    const res = await apiFetch("/api/rooms/create", {
+      body: {
+        number: roomNumber,
+        baseRent,
+      },
+      token,
+      method: "POST",
+    });
+    const room = res.data?.room;
+    if (room) {
+      navigate(`/rooms/${room._id}`);
       showSuccessToast("Room Created");
     } else {
-      showErrorToast("Unknown Error Occured");
+      showErrorToast(res.error?.message);
     }
     setLoading(false);
   }

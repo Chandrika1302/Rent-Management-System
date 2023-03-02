@@ -23,7 +23,12 @@ module.exports = function authenticate(req, res, next) {
           req.user = dbUser;
           next();
         } else {
-          res.sendStatus(403);
+          res.json({
+            error: {
+              code: 403,
+              message: "AUTH error, User does not exist in database",
+            },
+          });
         }
       });
     }

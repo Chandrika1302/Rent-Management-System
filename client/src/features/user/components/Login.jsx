@@ -6,13 +6,13 @@ import Form from "../../../components/form/Form";
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Grow from "@mui/material/Grow";
-import validateLogin from "../utils/validateLogin";
 import { login } from "../userSlice";
 import { useState } from "react";
 import {
   showErrorToast,
   showSuccessToast,
 } from "../../../components/ui/toasts.js";
+import apiFetch from "../../../lib/apiFetch";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -41,17 +41,17 @@ export default function Login() {
     const password = formData.password;
 
     setLoading(true);
-    const res = await validateLogin({
-      username,
-      password,
+    const res = await apiFetch("/api/login", {
+      body: { username, password },
+      method: "POST",
     });
 
-    if (res.token) {
-      dispatch(login({ name: username, token: res.token }));
+    if (res.data?.token) {
+      dispatch(login({ name: username, token: res.data.token }));
       navigate("/");
       showSuccessToast("Logged in Successfully");
     } else {
-      showErrorToast("Username or Password Incorrect");
+      showErrorToast(res.error?.message);
     }
     setLoading(false);
   }

@@ -3,10 +3,10 @@ const router = express.Router();
 
 const roomsController = require("../controllers/roomsController");
 
-router.post("/", roomsController.index);
+router.get("/", roomsController.index);
 
-router.post("/create", roomsController.create_room_POST);
+router.post("/create", roomsController.create_post);
 
-router.post("/:id", roomsController.getRoom);
+router.get("/:id", roomsController.detail);
 
 module.exports = router;

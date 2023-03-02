@@ -89,6 +89,14 @@ npx express-generator --no-view api
 
 an example of .env is also provided under ./api, a copy of this file on google drive for colloboration purposes can be requested from me [Here](https://drive.google.com/file/d/1ny_Jq6myp8s3SlVCL-o-VN5xPc1M1ZvV/view?usp=share_link). This has not been put in the github repository for obvious security reasons.
 
+## Some remarks
+1. API specs are located in api/api-specs.xlsx
+2. All methods are Post
+3. The API is *not* Restful.
+
+## API entities
+1. user: The logged in user or owner of the PG
+
 # Other Recommended stuff
 
 1. Use Linux - makes a lot of things easier.

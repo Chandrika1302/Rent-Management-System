@@ -20,7 +20,7 @@ export default function RoomCard({ room }) {
       <CustomLink to={"/rooms/" + room._id}>
         <Paper elevation={3} sx={{ p: 1 }}>
           <Typography variant="h5" component="h3">
-            RN: {room.roomNumber}
+            RN: {room.number}
           </Typography>
 
           <Typography

@@ -1,5 +1,4 @@
 import Form from "../../../components/form/Form";
-import createTenant from "../utils/createTenant.js";
 
 import { Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -14,6 +13,7 @@ import {
   showSuccessToast,
 } from "../../../components/ui/toasts.js";
 import { selectToken } from "../../user/userSlice";
+import apiFetch from "../../../lib/apiFetch";
 
 export default function CreateTenant() {
   const navigate = useNavigate();
@@ -55,20 +55,25 @@ export default function CreateTenant() {
     const aadharCard = formData.aadharCard;
     const room = formData.room;
     setLoading(true);
-    const res = await createTenant({
-      name,
-      phoneNumber,
-      aadharCard,
-      room,
+    const res = await apiFetch({
+      body: {
+        name,
+        phoneNumber,
+        aadharCard,
+        room,
+        token,
+      },
       token,
+      method: "POST",
     });
 
-    const error = res.error;
-    if (!error) {
-      navigate("/tenants");
+    const tenant = res.data?.tenant;
+    if (tenant) {
+      navigate("/tenants/" + tenant._id);
       showSuccessToast("Tenant Created");
     } else {
-      showErrorToast("Unknown Error Occured");
+      const error = res.error?.message;
+      showErrorToast(error);
     }
     setLoading(false);
   }

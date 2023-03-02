@@ -9,9 +9,9 @@ import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
-import fetchTenant from "../utils/fetchTenant.js";
 import { selectToken } from "../../user/userSlice.js";
 import CustomLink from "../../../components/ui/CustomLink.jsx";
+import apiFetch from "../../../lib/apiFetch.js";
 
 function Tenant() {
   const id = useParams().id;
@@ -23,15 +23,19 @@ function Tenant() {
   useEffect(() => {
     const asyncTenantFetch = async () => {
       setFetching(true);
-      const { tenant } = await fetchTenant({ token, id });
+      const tenantRaw = await apiFetch("/api/tenants/" + id, { token });
+      const tenant = tenantRaw.data?.tenant;
+      const error = tenantRaw.error?.message;
+      if (error) {
+        console.error(error);
+      }
       setTenant(tenant);
       setFetching(false);
     };
     asyncTenantFetch();
   }, [id, token]);
 
-  //TODO bad hack, error checking is horribly complex and proabably broken
-  if (Object.keys(tenant).length == 0 && !fetching) {
+  if (tenant == null && !fetching) {
     return (
       <Typography variant="h2" component="h2">
         No Tenant Found
@@ -74,7 +78,7 @@ function Tenant() {
             sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
           >
             <CustomLink to={"/rooms/" + tenant.room._id} color="primary">
-              {tenant.room.roomNumber}
+              {tenant.room.number}
             </CustomLink>
           </Typography>
           <Typography

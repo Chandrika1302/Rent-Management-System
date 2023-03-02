@@ -10,9 +10,9 @@ import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
-import fetchRoom from "../utils/fetchRoom.js";
 import { selectToken } from "../../user/userSlice.js";
 import CustomLink from "../../../components/ui/CustomLink.jsx";
+import apiFetch from "../../../lib/apiFetch.js";
 
 function Room() {
   const id = useParams().id;
@@ -24,15 +24,19 @@ function Room() {
   useEffect(() => {
     const asyncRoomFetch = async () => {
       setFetching(true);
-      const { room } = await fetchRoom({ token, id });
+      const roomRaw = await apiFetch("/api/rooms/" + id, { token });
+      const room = roomRaw.data?.room;
+      const error = roomRaw.error?.message;
+      if (error) {
+        console.error(error);
+      }
       setRoom(room);
       setFetching(false);
     };
     asyncRoomFetch();
   }, [id, token]);
 
-  //TODO bad hack, error checking is horribly complex and proabably broken
-  if (Object.keys(room).length == 0 && !fetching) {
+  if (room == null && !fetching) {
     return (
       <Typography variant="h2" component="h2">
         No Room Found
@@ -60,7 +64,7 @@ function Room() {
       >
         <Paper elevation={2} sx={{ p: 1, width: 1 }}>
           <Typography variant="h5" component="h3">
-            RN: {room.roomNumber}
+            RN: {room.number}
           </Typography>
 
           <Typography

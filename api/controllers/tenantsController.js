@@ -3,20 +3,21 @@ const Room = require("../models/Room");
 
 exports.index = async function (req, res) {
   const user = req.user;
-  const tenants = await Tenant.find({ userId: user.id }).lean();
-  res.json(tenants);
+  const tenants = await Tenant.find({ user: user.id }).lean();
+  res.json({ data: { tenants } });
 };
-exports.getTenant = async function (req, res) {
+exports.detail = async function (req, res) {
   //const user = req.user;
   const tenantId = req.params.id;
   try {
     const tenant = await Tenant.findById(tenantId).populate("room").lean();
-    res.json(tenant);
+    res.json({ data: { tenant } });
   } catch (e) {
-    res.json({ error: e.msg });
+    console.error(e);
+    res.json({ error: { code: 500, message: "unknown error" } });
   }
 };
-exports.create_tenant_POST = async function (req, res) {
+exports.create_post = async function (req, res) {
   const name = req.body.name;
   const phoneNumber = req.body.phoneNumber;
   const aadharCard = req.body.aadharCard;
@@ -34,8 +35,9 @@ exports.create_tenant_POST = async function (req, res) {
 
   try {
     await tenant.save();
-    res.json({ error: null });
+    res.json({ data: { tenant } });
   } catch (e) {
-    res.json({ error: e.msg });
+    console.error(e);
+    res.json({ error: { code: 500, message: "unknown error" } });
   }
 };

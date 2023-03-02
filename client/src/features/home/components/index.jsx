@@ -16,8 +16,10 @@ function Home() {
   useEffect(() => {
     fetchStuff();
     async function fetchStuff() {
-      const rooms = await apiFetch("/api/rooms", { token });
-      const tenants = await apiFetch("/api/tenants", { token });
+      const roomsRaw = await apiFetch("/api/rooms", { token });
+      const rooms = roomsRaw.data.rooms;
+      const tenantsRaw = await apiFetch("/api/tenants", { token });
+      const tenants = tenantsRaw.data.tenants;
 
       setTotalRooms(rooms.length + "");
       setTotalTenants(tenants.length + "");

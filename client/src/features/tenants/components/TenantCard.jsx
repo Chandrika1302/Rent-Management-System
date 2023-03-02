@@ -21,17 +21,6 @@ export default function TenantCard({ tenant }) {
           <Typography variant="h5" component="h3">
             Name: {tenant.name}
           </Typography>
-
-          <Typography
-            variant="body2"
-            component="h4"
-            sx={{ color: "text.secondary" }}
-          >
-            {
-              //Total Tenants: {tenant.tenants.length}
-            }
-          </Typography>
-
           <Typography
             variant="h6"
             component="p"

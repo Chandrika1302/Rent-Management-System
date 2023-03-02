@@ -14,10 +14,14 @@ mongoose.connect(process.env.MONGODB_URI, {
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB Connection error:"));
 
+const shouldClear = process.argv[2] === "clear";
+
 async function main() {
-  await User.collection.drop().catch(); //what could possibly go wrong? nothing right? right?
-  await Room.collection.drop().catch();
-  await Tenant.collection.drop().catch();
+  if (shouldClear) {
+    await User.collection.drop().catch();
+    await Room.collection.drop().catch();
+    await Tenant.collection.drop().catch();
+  }
 
   const user = new User({
     username: "abc",
@@ -27,14 +31,14 @@ async function main() {
 
   for (let i = 0; i < 5; i++) {
     const room = new Room({
-      userId: user.id,
-      roomNumber: i,
+      user: user.id,
+      number: i,
       baseRent: 2000,
       balance: 0,
     });
     for (let j = 0; j < 5; j++) {
       const tenant = new Tenant({
-        userId: user.id,
+        user: user.id,
         name: `name${i}-${j}`,
         phoneNumber: i + j,
         aadharCard: j,

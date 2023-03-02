@@ -3,26 +3,27 @@ const Tenant = require("../models/Tenant");
 
 exports.index = async function (req, res) {
   const user = req.user;
-  const rooms = await Room.find({ userId: user.id }).lean();
+  const rooms = await Room.find({ user: user.id }).lean();
   for (const room of rooms) {
     room.tenants = await Tenant.find({ room: room._id }).lean();
   }
-  res.json(rooms);
+  res.json({ data: { rooms } });
 };
 
-exports.getRoom = async function (req, res) {
+exports.detail = async function (req, res) {
   //const user = req.user;
   const roomId = req.params.id;
   try {
     const room = await Room.findById(roomId).lean();
     room.tenants = await Tenant.find({ room: room?._id }).lean();
-    res.json(room);
+    res.json({ data: { room } });
   } catch (e) {
-    res.json({ error: e.msg });
+    console.error(e);
+    res.json({ error: { code: 500, message: "unknown error" } });
   }
 };
 
-exports.create_room_POST = async function (req, res) {
+exports.create_post = async function (req, res) {
   const roomNumber = req.body.roomNumber;
   const baseRent = req.body.baseRent;
   const user = req.user;
@@ -36,8 +37,9 @@ exports.create_room_POST = async function (req, res) {
 
   try {
     await room.save();
-    res.json({ error: null });
+    res.json({ data: { room } });
   } catch (e) {
-    res.json({ error: e.msg });
+    console.error(e);
+    res.json({ error: { code: 500, message: "unknown error" } });
   }
 };

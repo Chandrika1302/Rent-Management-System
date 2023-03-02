@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import RoomCard from "./components/RoomCard";
 import { selectToken } from "../user/userSlice.js";
-import fetchRooms from "./utils/fetchRooms.js";
+import apiFetch from "../../lib/apiFetch";
+import { showErrorToast } from "../../components/ui/toasts";
 
 function AllRooms() {
   const [rooms, setRooms] = useState([]);
@@ -15,7 +16,13 @@ function AllRooms() {
   useEffect(() => {
     const asyncRoomFetch = async () => {
       setFetching(true);
-      const { rooms } = await fetchRooms({ token });
+      const roomsRaw = await apiFetch("/api/rooms/", { token });
+      const rooms = roomsRaw.data?.rooms;
+      const error = roomsRaw.error?.message;
+      if (error) {
+        showErrorToast(error);
+      }
+
       setRooms(rooms);
       setFetching(false);
     };
