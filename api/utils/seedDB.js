@@ -1,5 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
+const { randNumber, randUser } = require("@ngneat/falso");
 
 const User = require("../models/User.js");
 const Room = require("../models/Room.js");
@@ -33,17 +34,24 @@ async function main() {
     const room = new Room({
       user: user.id,
       number: i,
-      baseRent: 2000,
+      baseRent: randNumber({ max: 3000, min: 1500, precision: 100 }),
       balance: 0,
     });
     for (let j = 0; j < 5; j++) {
+      const fakeUser = randUser();
+      let fakeAddress = "";
+      for (const prop in fakeUser.address) {
+        fakeAddress += fakeUser.address[prop] + ", ";
+      }
+      fakeAddress = fakeAddress.slice(0, -2);
       const tenant = new Tenant({
         user: user.id,
-        name: `name${i}-${j}`,
-        phoneNumber: i + j,
-        aadharCard: j,
-        email: `email${i}.${j}@gmail.com`,
+        name: fakeUser.firstName + " " + fakeUser.lastName,
+        phoneNumber: randNumber({ max: 9999999999, min: 1000000000 }),
+        aadharCard: randNumber({ max: 999999999999, min: 100000000000 }),
+        email: fakeUser.email,
         room: room.id,
+        address: fakeAddress,
       });
       await tenant.save();
     }

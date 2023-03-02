@@ -40,7 +40,7 @@ export default function RoomCard({ room }) {
           <Grid container>
             {room.tenants.map((tenant) => {
               return (
-                <Grid item xs={6} key={tenant._id}>
+                <Grid item xs={12} key={tenant._id}>
                   <Typography
                     variant="span"
                     component="p"

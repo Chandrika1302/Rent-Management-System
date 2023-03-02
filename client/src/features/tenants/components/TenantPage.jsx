@@ -64,19 +64,12 @@ function Tenant() {
           <Typography variant="h5" component="h3">
             Name: {tenant.name}
           </Typography>
-
           <Typography
-            variant="body2"
+            variant="h4"
             component="p"
             sx={{ color: "text.primary", mt: 2, mb: 0 }}
           >
-            Room:
-          </Typography>
-          <Typography
-            variant="h6"
-            component="p"
-            sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
-          >
+            Room:{" "}
             <CustomLink to={"/rooms/" + tenant.room._id} color="primary">
               {tenant.room.number}
             </CustomLink>
@@ -88,17 +81,18 @@ function Tenant() {
           >
             Phone: {tenant.phoneNumber}
           </Typography>
-
           <Typography
             variant="body2"
             component="p"
             sx={{
               color: "text.secondary",
-              display: "flex",
-              justifyContent: "left",
+              mt: 1,
             }}
           >
             Aadhar Card Number: {tenant.aadharCard}
+          </Typography>{" "}
+          <Typography variant="h6" component="p" sx={{ mt: 3 }}>
+            Address: {tenant.address}
           </Typography>
         </Paper>
         <Button

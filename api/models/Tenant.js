@@ -7,6 +7,7 @@ const tenantSchema = new Schema({
   aadharCard: { type: Number },
   name: { type: String },
   room: { type: Schema.Types.ObjectId, ref: "Room" },
+  address: { type: String },
 });
 
 const Tenant = mongoose.model("Tenant", tenantSchema);
