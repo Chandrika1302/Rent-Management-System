@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import Rooms from "./pages/Rooms.jsx";
 import Tenants from "./pages/Tenants.jsx";
 import Layout from "./layout/Layout";
-import Error404 from "./layout/Error404";
+import Error from "./layout/Error";
 import CreateRoom from "./features/rooms/components/CreateRoom.jsx";
 import RoomPage from "./features/rooms/components/RoomPage.jsx";
 import CreateTenant from "./features/tenants/components/CreateTenant.jsx";
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement: <Error404 />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -61,6 +61,10 @@ const router = createBrowserRouter([
         element: <TenantPage />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Error message="Route Not Found" />,
   },
 ]);
 
