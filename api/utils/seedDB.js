@@ -36,6 +36,8 @@ async function main() {
       const tenant = new Tenant({
         userId: user.id,
         name: `name${i}-${j}`,
+        phoneNumber: i + j,
+        aadharCard: j,
         email: `email${i}.${j}@gmail.com`,
         room: room.id,
       });
