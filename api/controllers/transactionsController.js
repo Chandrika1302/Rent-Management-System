@@ -39,6 +39,7 @@ exports.create_post = async function (req, res) {
     user,
     remarks,
     room: room.id,
+    date: new Date(),
   });
 
   try {

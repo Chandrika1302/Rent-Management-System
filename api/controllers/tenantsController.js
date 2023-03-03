@@ -30,7 +30,7 @@ exports.create_post = async function (req, res) {
     phoneNumber,
     aadharCard,
     room: room.id,
-    userId: user.id,
+    user: user.id,
   });
 
   try {

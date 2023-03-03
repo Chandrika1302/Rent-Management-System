@@ -93,6 +93,16 @@ function Transaction() {
           >
             Balance Current: {transaction.presentBalance}
           </Typography>{" "}
+          <Typography
+            variant="body2"
+            component="p"
+            sx={{
+              color: "text.secondary",
+              mt: 1,
+            }}
+          >
+            Date: {new Date(transaction.date).toLocaleString()}
+          </Typography>{" "}
           <Typography variant="h6" component="p" sx={{ mt: 3 }}>
             Remakrs: {transaction.remarks}
           </Typography>

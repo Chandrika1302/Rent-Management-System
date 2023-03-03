@@ -24,14 +24,14 @@ exports.detail = async function (req, res) {
 };
 
 exports.create_post = async function (req, res) {
-  const roomNumber = req.body.roomNumber;
+  const number = req.body.number;
   const baseRent = req.body.baseRent;
   const user = req.user;
 
   const room = new Room({
-    roomNumber,
+    number,
     baseRent,
-    userId: user.id,
+    user: user.id,
     balance: 0,
   });
 

@@ -21,7 +21,7 @@ export default function CreateRoom() {
   const [loading, setLoading] = useState(false);
 
   const fields = {
-    roomNumber: {
+    number: {
       placeHolder: "Room Number",
       required: true,
       type: "text",
@@ -38,13 +38,13 @@ export default function CreateRoom() {
   async function onSubmit(e) {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
-    const roomNumber = formData.roomNumber;
+    const number = formData.number;
     const baseRent = formData.baseRent;
 
     setLoading(true);
     const res = await apiFetch("/api/rooms/create", {
       body: {
-        number: roomNumber,
+        number,
         baseRent,
       },
       token,

@@ -1,10 +1,11 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const { randNumber, randUser } = require("@ngneat/falso");
+const { randNumber, randUser, randLine } = require("@ngneat/falso");
 
 const User = require("../models/User.js");
 const Room = require("../models/Room.js");
 const Tenant = require("../models/Tenant.js");
+const Transaction = require("../models/Transaction.js");
 
 //connect to mongodb
 mongoose.set("strictQuery", false);
@@ -54,6 +55,24 @@ async function main() {
         address: fakeAddress,
       });
       await tenant.save();
+    }
+    for (let j = 0; j < 5; j++) {
+      const transfer = randNumber({ max: 2000, min: -2000, precision: 100 });
+      const previousBalance = room.balance;
+      const presentBalance = previousBalance + transfer;
+      room.balance = presentBalance;
+      const remarks = randLine();
+
+      const transaction = new Transaction({
+        transfer,
+        presentBalance,
+        previousBalance,
+        user,
+        remarks,
+        room: room.id,
+        date: new Date(),
+      });
+      await transaction.save();
     }
     await room.save();
   }
