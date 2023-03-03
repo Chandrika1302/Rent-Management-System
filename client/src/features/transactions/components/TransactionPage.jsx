@@ -2,7 +2,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Paper from "@mui/material/Paper";
 import Grow from "@mui/material/Grow";
-import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 
 import { useNavigate } from "react-router-dom";
@@ -14,32 +13,34 @@ import { selectToken } from "../../user/userSlice.js";
 import CustomLink from "../../../components/ui/CustomLink.jsx";
 import apiFetch from "../../../lib/apiFetch.js";
 
-function Room() {
+function Transaction() {
   const id = useParams().id;
   const navigate = useNavigate();
-  const [room, setRoom] = useState({});
+  const [transaction, setTransaction] = useState({});
   const [fetching, setFetching] = useState(true);
   const token = useSelector(selectToken);
 
   useEffect(() => {
-    const asyncRoomFetch = async () => {
+    const asyncTransactionFetch = async () => {
       setFetching(true);
-      const roomRaw = await apiFetch("/api/rooms/" + id, { token });
-      const room = roomRaw.data?.room;
-      const error = roomRaw.error?.message;
+      const transactionRaw = await apiFetch("/api/transactions/" + id, {
+        token,
+      });
+      const transaction = transactionRaw.data?.transaction;
+      const error = transactionRaw.error?.message;
       if (error) {
         console.error(error);
       }
-      setRoom(room);
+      setTransaction(transaction);
       setFetching(false);
     };
-    asyncRoomFetch();
+    asyncTransactionFetch();
   }, [id, token]);
 
-  if (room == null && !fetching) {
+  if (transaction == null && !fetching) {
     return (
       <Typography variant="h2" component="h2">
-        No Room Found
+        No Transaction Found
       </Typography>
     );
   }
@@ -50,7 +51,6 @@ function Room() {
       </Typography>
     );
   }
-
   return (
     <Grow in>
       <Box
@@ -64,81 +64,51 @@ function Room() {
       >
         <Paper elevation={2} sx={{ p: 1, width: 1 }}>
           <Typography variant="h5" component="h3">
-            RN: {room.number}
-          </Typography>
-
-          <Typography
-            variant="body2"
-            component="h4"
-            sx={{ color: "text.secondary" }}
-          >
-            Total Tenants: {room.tenants.length}
+            Transfer: {transaction.transfer}
           </Typography>
           <Typography
-            variant="body2"
+            variant="h4"
             component="p"
             sx={{ color: "text.primary", mt: 2, mb: 0 }}
           >
-            Occupants:
+            Room:
+            <CustomLink to={"/rooms/" + transaction.room._id} color="primary">
+              {transaction.room.number}
+            </CustomLink>
           </Typography>
-          <Grid container>
-            {room.tenants.map((tenant) => {
-              return (
-                <Grid item xs={12} key={tenant._id}>
-                  <Typography
-                    variant="h6"
-                    component="p"
-                    sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
-                    key={tenant._id}
-                  >
-                    <CustomLink to={"/tenants/" + tenant._id} color="primary">
-                      {tenant.name}
-                    </CustomLink>
-                  </Typography>
-                </Grid>
-              );
-            })}
-          </Grid>
           <Typography
             variant="h6"
             component="p"
             sx={{ color: "text.primary", mt: 1, mb: 1 }}
           >
-            Balance: {room.balance}
+            Previous Balance: {transaction.previousBalance}
           </Typography>
-
           <Typography
             variant="body2"
             component="p"
             sx={{
               color: "text.secondary",
-              display: "flex",
-              justifyContent: "left",
+              mt: 1,
             }}
           >
-            Base Rent: {room.baseRent}
+            Balance Current: {transaction.presentBalance}
+          </Typography>{" "}
+          <Typography variant="h6" component="p" sx={{ mt: 3 }}>
+            Remakrs: {transaction.remarks}
           </Typography>
         </Paper>
         <Button
           variant="outlined"
           onClick={() => {
-            navigate("/transactions/create/?roomNumber=" + room.number);
+            navigate("/transactions/update/" + transaction._id);
           }}
         >
-          Create Transaction
+          Update
         </Button>{" "}
         <Button
           variant="outlined"
           onClick={() => {
-            navigate("/transactions/?room=" + room._id);
-          }}
-        >
-          View All Transactions
-        </Button>
-        <Button
-          variant="outlined"
-          onClick={() => {
-            navigate("/rooms/delete/" + room._id);
+            navigate("/transactions/delete/" + transaction._id);
           }}
         >
           delete
@@ -148,4 +118,4 @@ function Room() {
   );
 }
 
-export default Room;
+export default Transaction;

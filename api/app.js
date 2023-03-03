@@ -11,6 +11,7 @@ const authenticate = require("./middleware/authenticate");
 const indexRouter = require("./routes/index");
 const roomsRouter = require("./routes/rooms");
 const tenantsRouter = require("./routes/tenants");
+const transactionRouter = require("./routes/transactions");
 
 const app = express();
 
@@ -39,5 +40,6 @@ app.use(authenticate);
 app.use("/api", indexRouter);
 app.use("/api/rooms", roomsRouter);
 app.use("/api/tenants", tenantsRouter);
+app.use("/api/transactions", transactionRouter);
 
 module.exports = app;

@@ -91,8 +91,6 @@ an example of .env is also provided under ./api, a copy of this file on google d
 
 ## Some remarks
 1. API specs are located in api/api-specs.xlsx
-2. All methods are Post
-3. The API is *not* Restful.
 
 ## API entities
 1. user: The logged in user or owner of the PG

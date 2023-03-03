@@ -45,6 +45,7 @@ export default function Form({
               value={fieldData.value}
               onChange={onChangeHandler}
               type={fieldData.type}
+              disabled={fieldData.disabled ?? false}
             />
           </Box>
         );
