@@ -1,6 +1,6 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
-const { randNumber, randUser, randLine } = require("@ngneat/falso");
+const { randNumber, randUser, randCatchPhrase } = require("@ngneat/falso");
 
 const User = require("../models/User.js");
 const Room = require("../models/Room.js");
@@ -67,7 +67,7 @@ async function main() {
       const previousBalance = room.balance;
       const presentBalance = previousBalance + moneyFromOwner - moneyToOwner;
       room.balance = presentBalance;
-      const remarks = randLine();
+      const remarks = randCatchPhrase();
 
       const transaction = new Transaction({
         moneyToOwner,

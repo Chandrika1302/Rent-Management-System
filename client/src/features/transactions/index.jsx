@@ -56,7 +56,7 @@ function AllTransactions() {
       <Grid container spacing={2}>
         {transactions.map((transaction) => {
           return (
-            <Grid item xs={3} key={transaction._id}>
+            <Grid item xs={12} key={transaction._id}>
               <TransactionCard transaction={transaction} />
             </Grid>
           );

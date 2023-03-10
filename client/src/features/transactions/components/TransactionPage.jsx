@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
 import { selectToken } from "../../user/userSlice.js";
-import CustomLink from "../../../components/ui/CustomLink.jsx";
 import apiFetch from "../../../lib/apiFetch.js";
 
 function Transaction() {
@@ -64,67 +63,74 @@ function Transaction() {
       >
         <Paper elevation={2} sx={{ p: 1, width: 1 }}>
           <Typography variant="h5" component="h3">
-            Money To Owner: {transaction.moneyToOwner}
-          </Typography>{" "}
-          <Typography variant="h5" component="h3">
-            Money Lent to Tenant / Other Charges: {transaction.moneyFromOwner}
+            Date: {new Date(transaction.date).toLocaleString()}
           </Typography>
           <Typography
-            variant="h4"
+            variant="body2"
+            component="h4"
+            sx={{ color: "text.secondary" }}
+          >
+            Room Number:
+            {transaction.room.number}
+          </Typography>
+          <Typography
+            variant="body2"
             component="p"
             sx={{ color: "text.primary", mt: 2, mb: 0 }}
           >
-            Room:
-            <CustomLink to={"/rooms/" + transaction.room._id} color="primary">
-              {transaction.room.number}
-            </CustomLink>
+            Transaction Information:
           </Typography>
           <Typography
             variant="h6"
             component="p"
-            sx={{ color: "text.primary", mt: 1, mb: 1 }}
+            sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
           >
-            Previous Balance: {transaction.previousBalance}
+            Money Given to Owner:{" "}
+            <Typography
+              component="span"
+              variant="h6"
+              sx={{ color: "text.primary" }}
+            >
+              {transaction.moneyToOwner}
+            </Typography>
           </Typography>
           <Typography
-            variant="body2"
+            variant="h6"
             component="p"
-            sx={{
-              color: "text.secondary",
-              mt: 1,
-            }}
+            sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
           >
-            Balance Current: {transaction.presentBalance}
-          </Typography>{" "}
+            Money Lent to Tenant/Other Charges:{" "}
+            <Typography
+              component="span"
+              variant="h6"
+              sx={{ color: "text.primary" }}
+            >
+              {transaction.moneyFromOwner}
+            </Typography>
+          </Typography>
           <Typography
-            variant="body2"
+            variant="h6"
             component="p"
-            sx={{
-              color: "text.secondary",
-              mt: 1,
-            }}
+            sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
           >
-            Date: {new Date(transaction.date).toLocaleString()}
-          </Typography>{" "}
-          <Typography variant="h6" component="p" sx={{ mt: 3 }}>
-            Remakrs: {transaction.remarks}
+            Remarks: {transaction.remarks}
           </Typography>
         </Paper>
         <Button
           variant="outlined"
           onClick={() => {
-            navigate("/transactions/update/" + transaction._id);
+            navigate("/rooms/" + transaction.room._id);
           }}
         >
-          Update
-        </Button>{" "}
+          Visit Room
+        </Button>
         <Button
           variant="outlined"
           onClick={() => {
-            navigate("/transactions/delete/" + transaction._id);
+            navigate("/transactions/?room=" + transaction.room._id);
           }}
         >
-          delete
+          View All Transactions of Same Room
         </Button>
       </Box>
     </Grow>

@@ -108,7 +108,7 @@ function Tenant() {
           }}
         >
           Visit Room
-        </Button>{" "}
+        </Button>
         <Button
           variant="outlined"
           onClick={() => {

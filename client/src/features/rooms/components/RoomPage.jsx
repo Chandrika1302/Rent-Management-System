@@ -134,7 +134,7 @@ function Room() {
             navigate("/transactions/?room=" + room._id);
           }}
         >
-          View All Transactions
+          View All Transactions of this Room
         </Button>
         <Button
           variant="outlined"
