@@ -1,12 +1,12 @@
-import DashBoardCard from "./DashboardCard";
-import Stats from "./Stats";
+import DashBoardCard from "./components/DashboardCard";
+import Stats from "./components/Stats";
 import Box from "@mui/material/Box";
 import Grow from "@mui/material/Grow";
 
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import apiFetch from "../../../lib/apiFetch";
-import { selectToken } from "../../user/userSlice.js";
+import apiFetch from "../../lib/apiFetch";
+import { selectToken } from "../user/userSlice.js";
 
 function Home() {
   const token = useSelector(selectToken);

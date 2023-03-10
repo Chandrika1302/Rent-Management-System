@@ -9,4 +9,6 @@ router.post("/create", roomsController.create_post);
 
 router.get("/:id", roomsController.detail);
 
+router.delete("/:id", roomsController.delete);
+
 module.exports = router;

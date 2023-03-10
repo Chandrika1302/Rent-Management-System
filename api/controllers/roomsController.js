@@ -49,3 +49,28 @@ exports.create_post = async function (req, res) {
     res.json({ error: { code: 500, message: "unknown error" } });
   }
 };
+
+exports.delete = async function (req, res) {
+  // const user = req.user;
+  const roomId = req.params.id;
+  try {
+    const room = await Room.findById(roomId).lean();
+    room.tenants = await Tenant.find({ room: room?._id }).lean();
+
+    if (room.tenants.length != 0) {
+      return res.json({
+        error: { code: 403, message: "Please delete all the occupants first" },
+      });
+    }
+
+    await Room.findByIdAndDelete(roomId);
+    return res.json({
+      data: {
+        message: "success",
+      },
+    });
+  } catch (e) {
+    console.error(e);
+    res.json({ error: { code: 500, message: "unknown error" } });
+  }
+};

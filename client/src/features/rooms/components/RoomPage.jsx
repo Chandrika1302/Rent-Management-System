@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { selectToken } from "../../user/userSlice.js";
 import CustomLink from "../../../components/ui/CustomLink.jsx";
 import apiFetch from "../../../lib/apiFetch.js";
+import deleteRoom from "../utils/deleteRoom.js";
 
 function Room() {
   const id = useParams().id;
@@ -138,7 +139,7 @@ function Room() {
         <Button
           variant="outlined"
           onClick={() => {
-            navigate("/rooms/delete/" + room._id);
+            deleteRoom(room._id, navigate, token);
           }}
         >
           delete
