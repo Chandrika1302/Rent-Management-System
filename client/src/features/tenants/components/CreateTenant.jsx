@@ -45,6 +45,12 @@ export default function CreateTenant() {
       type: "number",
       value: "",
     },
+    address: {
+      placeHolder: "Address",
+      required: true,
+      type: "textarea",
+      value: "",
+    },
   };
 
   async function onSubmit(e) {
@@ -54,14 +60,15 @@ export default function CreateTenant() {
     const phoneNumber = formData.phoneNumber;
     const aadharCard = formData.aadharCard;
     const room = formData.room;
+    const address = formData.address;
     setLoading(true);
-    const res = await apiFetch({
+    const res = await apiFetch("/api/tenants/create", {
       body: {
         name,
         phoneNumber,
         aadharCard,
         room,
-        token,
+        address,
       },
       token,
       method: "POST",

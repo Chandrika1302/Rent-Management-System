@@ -22,15 +22,33 @@ exports.create_post = async function (req, res) {
   const phoneNumber = req.body.phoneNumber;
   const aadharCard = req.body.aadharCard;
   const roomNumber = req.body.room;
+  const address = req.body.address;
   const user = req.user;
 
-  const room = await Room.findOne({ roomNumber });
+  const roomAlreadyPresent = await Room.findOne({ number: roomNumber });
+  if (!roomAlreadyPresent) {
+    return res.json({ error: { code: 403, message: "Room Not Found" } });
+  }
+
+  if (phoneNumber.length != 10) {
+    return res.json({
+      error: { code: 403, message: "Phone Number must be 10 digits long" },
+    });
+  }
+  if (aadharCard.length != 12) {
+    return res.json({
+      error: { code: 403, message: "Aadhar Number must be 12 digits long" },
+    });
+  }
+
+  const room = await Room.findOne({ number: roomNumber });
   const tenant = new Tenant({
     name,
     phoneNumber,
     aadharCard,
     room: room.id,
     user: user.id,
+    address,
   });
 
   try {

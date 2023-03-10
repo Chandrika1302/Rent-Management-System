@@ -25,6 +25,12 @@ exports.detail = async function (req, res) {
 
 exports.create_post = async function (req, res) {
   const number = req.body.number;
+
+  const roomAlreadyPresent = await Room.findOne({ number });
+  if (roomAlreadyPresent) {
+    return res.json({ error: { code: 500, message: "Room Already Present" } });
+  }
+
   const baseRent = req.body.baseRent;
   const user = req.user;
 
