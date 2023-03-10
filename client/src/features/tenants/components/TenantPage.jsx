@@ -83,7 +83,6 @@ function Tenant() {
             variant="h6"
             component="p"
             sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
-            key={tenant._id}
           >
             Phone: {tenant.phoneNumber}
           </Typography>
@@ -91,7 +90,6 @@ function Tenant() {
             variant="h6"
             component="p"
             sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
-            key={tenant._id}
           >
             Aadhar Card Number: {tenant.aadharCard}
           </Typography>{" "}
@@ -99,7 +97,6 @@ function Tenant() {
             variant="h6"
             component="p"
             sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
-            key={tenant._id}
           >
             Address: {tenant.address}
           </Typography>

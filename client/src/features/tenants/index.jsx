@@ -1,12 +1,15 @@
 import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 import Grow from "@mui/material/Grow";
 import Typography from "@mui/material/Typography";
+
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import TenantCard from "./components/TenantCard";
 import { selectToken } from "../user/userSlice.js";
 import apiFetch from "../../lib/apiFetch";
 import { showErrorToast } from "../../components/ui/toasts";
+import CustomLink from "../../components/ui/CustomLink";
 
 function AllTenants() {
   const [tenants, setTenants] = useState([]);
@@ -46,15 +49,31 @@ function AllTenants() {
 
   return (
     <Grow in>
-      <Grid container spacing={2}>
-        {tenants.map((tenant) => {
-          return (
-            <Grid item xs={3} key={tenant._id}>
-              <TenantCard tenant={tenant} />
-            </Grid>
-          );
-        })}
-      </Grid>
+      <Box>
+        <Paper elevation={2} sx={{ p: 1, width: 1 }}>
+          <Typography variant="h5" component="h3">
+            Full List of Tenants:
+          </Typography>
+          <Grid container>
+            {tenants.map((tenant) => {
+              return (
+                <Grid item xs={12} key={tenant._id}>
+                  <Typography
+                    variant="h6"
+                    component="p"
+                    sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
+                    key={tenant._id}
+                  >
+                    <CustomLink to={"/tenants/" + tenant._id} color="primary">
+                      {tenant.name},
+                    </CustomLink>
+                  </Typography>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Paper>
+      </Box>
     </Grow>
   );
 }
