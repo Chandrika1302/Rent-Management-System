@@ -21,6 +21,13 @@ cd api
 npm run seed
 ```
 
+In order to delete all previous data and "reseed", then use:
+
+```
+cd api
+npm run reseed
+```
+
 # Default username and password for testing:
 
 ```
@@ -29,12 +36,9 @@ username: abc
 password: 123
 ```
 
-# WIP LINK
+# LINK
 
 [LINK](https://rent-management-system.onrender.com/#/)
-
-This site is no longer deployed under github-pages. Instead [render.com](https://www.render.com) has been chosen for its generous free plan and
-abiltity to host a full stack express app. Much love to them for this wonderful service :D
 
 # Technologies
 
@@ -77,7 +81,7 @@ abiltity to host a full stack express app. Much love to them for this wonderful 
 
 # Client Side Structure:
 
-Motivation for the client side structure comes from this [Video](https://www.youtube.com/watch?v=UUga4-z7b6s). This structure can be found [here](https://github.com/WebDevSimplified/react-folder-structure/tree/main/advanced/src). The only reason this structure is being followed so religiously is to save the sanity of the developers.
+Motivation for the client side structure comes from this [Video](https://www.youtube.com/watch?v=UUga4-z7b6s). This structure can be found [here](https://github.com/WebDevSimplified/react-folder-structure/tree/main/advanced/src).
 
 # API Side Structure
 
@@ -89,13 +93,29 @@ npx express-generator --no-view api
 
 an example of .env is also provided under ./api, a copy of this file on google drive for colloboration purposes can be requested from me [Here](https://drive.google.com/file/d/1ny_Jq6myp8s3SlVCL-o-VN5xPc1M1ZvV/view?usp=share_link). This has not been put in the github repository for obvious security reasons.
 
-## Some remarks
-1. API specs are located in api/api-specs.xlsx
+- API specs are located in api/api-specs.xlsx
 
-## API entities
-1. user: The logged in user or owner of the PG
+- Format of all errors from server:
 
-# Other Recommended stuff
+```
+{
+   "code":"code"
+   "message":"message"
+}
+```
 
-1. Use Linux - makes a lot of things easier.
-2. Have the latest version of nodeJS and npm installed on your system.
+## API entities:
+
+- user: The logged in user or owner of the PG
+
+- room: A room contains references to tenants and transactions
+
+- tenant: A tenant "occupies" a room and contains information like phone number, aadhar card etc.
+
+- transaction: A money transfer, transactions are bound to rooms and not to users. A positive balance: The tenant has to pay the PG owner.
+
+# Other Recommended Stuff
+
+1. Linux - So you don't face nodemon and other stupid windows errors.
+
+2. Latest npm and lts version of node: To ensure stuff doesn't break due to strange version errors.

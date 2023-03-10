@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 exports.index = function (req, res) {
   res.json({
-    data: "/api accessible",
+    data: { message: "/api accessible" },
   });
 };
 
