@@ -50,7 +50,14 @@ function AllRooms() {
       <Grid container spacing={2}>
         {rooms.map((room) => {
           return (
-            <Grid item xs={12} md={4} lg={3} key={room._id}>
+            <Grid
+              item
+              xs={12}
+              md={4}
+              lg={3}
+              key={room._id}
+              sx={{ display: "flex" }}
+            >
               <RoomCard room={room} />
             </Grid>
           );

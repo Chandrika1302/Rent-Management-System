@@ -64,7 +64,7 @@ function Room() {
       >
         <Paper elevation={2} sx={{ p: 1, width: 1 }}>
           <Typography variant="h5" component="h3">
-            RN: {room.number}
+            Room Number: {room.number}
           </Typography>
 
           <Typography

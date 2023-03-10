@@ -15,12 +15,22 @@ export default function RoomCard({ room }) {
         "& > :not(style)": {
           m: 1,
         },
+        flex: 1,
       }}
     >
-      <CustomLink to={"/rooms/" + room._id}>
-        <Paper elevation={3} sx={{ p: 1 }}>
+      <CustomLink to={"/rooms/" + room._id} sx={{ flex: 1, display: "flex" }}>
+        <Paper
+          elevation={3}
+          sx={{
+            p: 1,
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            position: "relative",
+          }}
+        >
           <Typography variant="h5" component="h3">
-            RN: {room.number}
+            Room Number: {room.number}
           </Typography>
 
           <Typography
@@ -56,7 +66,11 @@ export default function RoomCard({ room }) {
           <Typography
             variant="h6"
             component="p"
-            sx={{ color: "text.primary", mt: 3, mb: 3 }}
+            sx={{
+              color: "text.primary",
+              mt: 3,
+              mb: 3,
+            }}
           >
             Balance: {room.balance}
           </Typography>
@@ -66,8 +80,9 @@ export default function RoomCard({ room }) {
             component="p"
             sx={{
               color: "text.secondary",
-              display: "flex",
-              justifyContent: "right",
+              alignSelf: "flex-end",
+              bottom: "0.5rem",
+              position: "absolute", //meh Hack
             }}
           >
             Base Rent: {room.baseRent}
