@@ -19,6 +19,8 @@ import Transactions from "./pages/Transactions.jsx";
 import CreateTransaction from "./features/transactions/components/CreateTransaction.jsx";
 import TransactionPage from "./features/transactions/components/TransactionPage.jsx";
 
+import About from "./pages/About.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -81,6 +83,11 @@ const router = createBrowserRouter([
         path: "transactions/:id/",
         exact: true,
         element: <TransactionPage />,
+      },
+      {
+        path: "about/",
+        exact: true,
+        element: <About />,
       },
     ],
   },
