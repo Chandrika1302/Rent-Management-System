@@ -25,15 +25,17 @@ exports.detail = async function (req, res) {
 exports.create_post = async function (req, res) {
   const user = req.user;
   const room = await Room.findOne({ number: req.body.room });
-  const transfer = req.body.transfer;
+  const moneyToOwner = req.body.moneyToOwner;
+  const moneyFromOwner = req.body.moneyFromOwner;
   const previousBalance = room.balance;
   const remarks = req.body.remarks;
 
-  room.balance -= transfer;
+  room.balance += moneyFromOwner - moneyToOwner;
   await room.save();
 
   const transaction = new Transaction({
-    transfer,
+    moneyFromOwner,
+    moneyToOwner,
     presentBalance: room.balance,
     previousBalance,
     user,

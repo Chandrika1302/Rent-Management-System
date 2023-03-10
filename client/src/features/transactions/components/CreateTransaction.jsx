@@ -28,11 +28,17 @@ export default function CreateTransaction() {
       type: "text",
       value: roomNumber,
     },
-    transfer: {
-      placeHolder: "Money Transferred",
+    moneyToOwner: {
+      placeHolder: "Money Given to Owner",
       required: true,
-      type: "text",
-      value: "",
+      type: "number",
+      value: "0",
+    },
+    moneyFromOwner: {
+      placeHolder: "Money Lent to Tenant/ another Bill",
+      required: true,
+      type: "number",
+      value: "0",
     },
     remarks: {
       placeHolder: "Remarks",
@@ -44,13 +50,15 @@ export default function CreateTransaction() {
   async function onSubmit(e) {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
-    const transfer = formData.transfer;
+    const moneyFromOwner = formData.moneyFromOwner;
+    const moneyToOwner = formData.moneyToOwner;
     const remarks = formData.remarks;
     const room = formData.room;
     setLoading(true);
     const res = await apiFetch("/api/transactions/create", {
       body: {
-        transfer,
+        moneyFromOwner,
+        moneyToOwner,
         remarks,
         room,
         token,

@@ -64,7 +64,10 @@ function Transaction() {
       >
         <Paper elevation={2} sx={{ p: 1, width: 1 }}>
           <Typography variant="h5" component="h3">
-            Transfer: {transaction.transfer}
+            Money To Owner: {transaction.moneyToOwner}
+          </Typography>{" "}
+          <Typography variant="h5" component="h3">
+            Money Lent to Tenant / Other Charges: {transaction.moneyFromOwner}
           </Typography>
           <Typography
             variant="h4"

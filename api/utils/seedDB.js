@@ -57,14 +57,21 @@ async function main() {
       await tenant.save();
     }
     for (let j = 0; j < 5; j++) {
-      const transfer = randNumber({ max: 2000, min: -2000, precision: 100 });
+      let moneyFromOwner = 0;
+      let moneyToOwner = 0;
+      if (Math.random() < 0.5) {
+        moneyFromOwner = randNumber({ max: 2000, min: 0, precision: 100 });
+      } else {
+        moneyToOwner = randNumber({ max: 2000, min: 0, precision: 100 });
+      }
       const previousBalance = room.balance;
-      const presentBalance = previousBalance - transfer;
+      const presentBalance = previousBalance + moneyFromOwner - moneyToOwner;
       room.balance = presentBalance;
       const remarks = randLine();
 
       const transaction = new Transaction({
-        transfer,
+        moneyToOwner,
+        moneyFromOwner,
         presentBalance,
         previousBalance,
         user,
