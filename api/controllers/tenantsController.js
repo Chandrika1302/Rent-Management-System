@@ -59,3 +59,19 @@ exports.create_post = async function (req, res) {
     res.json({ error: { code: 500, message: "unknown error" } });
   }
 };
+
+exports.delete = async function (req, res) {
+  // const user = req.user;
+  const tenantId = req.params.id;
+  try {
+    await Tenant.findByIdAndDelete(tenantId);
+    return res.json({
+      data: {
+        message: "success",
+      },
+    });
+  } catch (e) {
+    console.error(e);
+    res.json({ error: { code: 500, message: "unknown error" } });
+  }
+};

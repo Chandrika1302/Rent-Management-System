@@ -9,4 +9,6 @@ router.post("/create", tenantsController.create_post);
 
 router.get("/:id", tenantsController.detail);
 
+router.delete("/:id", tenantsController.delete);
+
 module.exports = router;

@@ -10,8 +10,8 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
 import { selectToken } from "../../user/userSlice.js";
-import CustomLink from "../../../components/ui/CustomLink.jsx";
 import apiFetch from "../../../lib/apiFetch.js";
+import deleteTenant from "../utils/deleteTenant.js";
 
 function Tenant() {
   const id = useParams().id;
@@ -65,48 +65,57 @@ function Tenant() {
             Name: {tenant.name}
           </Typography>
           <Typography
-            variant="h4"
-            component="p"
-            sx={{ color: "text.primary", mt: 2, mb: 0 }}
+            variant="body2"
+            component="h4"
+            sx={{ color: "text.secondary" }}
           >
-            Room:{" "}
-            <CustomLink to={"/rooms/" + tenant.room._id} color="primary">
-              {tenant.room.number}
-            </CustomLink>
-          </Typography>
-          <Typography
-            variant="h6"
-            component="p"
-            sx={{ color: "text.primary", mt: 1, mb: 1 }}
-          >
-            Phone: {tenant.phoneNumber}
+            Room Number:
+            {tenant.room.number}
           </Typography>
           <Typography
             variant="body2"
             component="p"
-            sx={{
-              color: "text.secondary",
-              mt: 1,
-            }}
+            sx={{ color: "text.primary", mt: 2, mb: 0 }}
+          >
+            Personal Information:
+          </Typography>
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
+            key={tenant._id}
+          >
+            Phone: {tenant.phoneNumber}
+          </Typography>
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
+            key={tenant._id}
           >
             Aadhar Card Number: {tenant.aadharCard}
           </Typography>{" "}
-          <Typography variant="h6" component="p" sx={{ mt: 3 }}>
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{ color: "text.secondary", ml: 4, mt: 1, mb: 1 }}
+            key={tenant._id}
+          >
             Address: {tenant.address}
           </Typography>
         </Paper>
         <Button
           variant="outlined"
           onClick={() => {
-            navigate("/tenants/update/" + tenant._id);
+            navigate("/rooms/" + tenant.room._id);
           }}
         >
-          Update
+          Visit Room
         </Button>{" "}
         <Button
           variant="outlined"
           onClick={() => {
-            navigate("/tenants/delete/" + tenant._id);
+            deleteTenant(tenant._id, navigate, token);
           }}
         >
           delete
