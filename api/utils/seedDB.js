@@ -59,7 +59,7 @@ async function main() {
     for (let j = 0; j < 5; j++) {
       const transfer = randNumber({ max: 2000, min: -2000, precision: 100 });
       const previousBalance = room.balance;
-      const presentBalance = previousBalance + transfer;
+      const presentBalance = previousBalance - transfer;
       room.balance = presentBalance;
       const remarks = randLine();
 

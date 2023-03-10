@@ -27,6 +27,13 @@ export default function TransactionCard({ transaction }) {
             sx={{ color: "text.primary", mt: 3, mb: 3 }}
           >
             Previous Balance: {transaction.previousBalance}
+          </Typography>{" "}
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{ color: "text.primary", mt: 3, mb: 3 }}
+          >
+            Balance Now: {transaction.presentBalance}
           </Typography>
           <Typography
             variant="h6"
