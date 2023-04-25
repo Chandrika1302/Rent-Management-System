@@ -6,6 +6,10 @@ import Paper from "@mui/material/Paper";
 import CustomLink from "../../../components/ui/CustomLink.jsx";
 import PropTypes from "prop-types";
 
+const textColor1 = "hsl(0, 0%, 0%);";
+const textColor2 = "hsl(0, 0%, 5%);";
+const backgroundColor = "hsl(221, 0%, 95%);";
+
 export default function RoomCard({ room }) {
   return (
     <Box
@@ -20,30 +24,33 @@ export default function RoomCard({ room }) {
     >
       <CustomLink to={"/rooms/" + room._id} sx={{ flex: 1, display: "flex" }}>
         <Paper
-          elevation={3}
+          elevation={9}
           sx={{
             p: 1,
             flex: 1,
             display: "flex",
             flexDirection: "column",
             position: "relative",
+            color: textColor1,
+            backgroundColor,
+            boxShadow: "0 0 0.5rem 0.1rem gray",
+            transition: "all 0.2s",
+            "&:hover": {
+              transform: "scale(1.05)",
+            },
           }}
         >
           <Typography variant="h5" component="h3">
             Room Number: {room.number}
           </Typography>
 
-          <Typography
-            variant="body2"
-            component="h4"
-            sx={{ color: "text.secondary" }}
-          >
+          <Typography variant="body2" component="h4" sx={{ color: textColor2 }}>
             Total Tenants: {room.tenants.length}
           </Typography>
           <Typography
             variant="body2"
             component="p"
-            sx={{ color: "text.primary", mt: 2, mb: 1 }}
+            sx={{ color: textColor1, mt: 2, mb: 1 }}
           >
             Occupants:
           </Typography>
@@ -54,7 +61,7 @@ export default function RoomCard({ room }) {
                   <Typography
                     variant="span"
                     component="p"
-                    sx={{ color: "text.secondary", mt: 1, mb: 0 }}
+                    sx={{ color: textColor2, mt: 1, mb: 0 }}
                     key={tenant._id}
                   >
                     {tenant.name}
@@ -67,7 +74,7 @@ export default function RoomCard({ room }) {
             variant="h6"
             component="p"
             sx={{
-              color: "text.primary",
+              color: textColor1,
               mt: 3,
               mb: 3,
             }}
@@ -79,7 +86,7 @@ export default function RoomCard({ room }) {
             variant="body2"
             component="p"
             sx={{
-              color: "text.secondary",
+              color: textColor2,
               alignSelf: "flex-end",
               bottom: "0.5rem",
               position: "absolute", //meh Hack

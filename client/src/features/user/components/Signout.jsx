@@ -24,7 +24,7 @@ export default function Signout() {
   return (
     <div>
       <Typography variant="h6" sx={{ mb: 2 }}>
-        This will delete all the rooms, tenanat and other associated data with
+        This will delete all the rooms, tenants and other associated data with
         your account. This action is irreversible.
       </Typography>
 

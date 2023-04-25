@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import { Grid } from "@mui/material";
 import PropTypes from "prop-types";
 
+const backgroundColor = "hsl(221, 0%, 95%);";
+
 export default function Stats({ totalRooms, totalTenants }) {
   return (
     <Box>
@@ -13,7 +15,7 @@ export default function Stats({ totalRooms, totalTenants }) {
       </Typography>
       <Grid container spacing={2}>
         <Grid item md={6} xs={12}>
-          <Card sx={{ minWidth: 275 }} variant="outlined">
+          <Card sx={{ minWidth: 275, backgroundColor }} variant="outlined">
             <CardContent>
               <Typography
                 variant="h4"
@@ -26,7 +28,7 @@ export default function Stats({ totalRooms, totalTenants }) {
           </Card>
         </Grid>
         <Grid item md={6} xs={12}>
-          <Card sx={{ minWidth: 275 }} variant="outlined">
+          <Card sx={{ minWidth: 275, backgroundColor }} variant="outlined">
             <CardContent>
               <Typography
                 variant="h4"

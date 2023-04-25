@@ -24,6 +24,8 @@ export default function AboutCard({ about }) {
           display: "flex",
           flexDirection: "column",
           position: "relative",
+          backgroundColor: "hsl(221, 0%, 95%);",
+          boxShadow: "0 0 0.5rem 0.1rem gray",
         }}
       >
         <Typography variant="h5" component="h3">

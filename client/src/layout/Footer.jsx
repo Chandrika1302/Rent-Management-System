@@ -9,6 +9,8 @@ import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import Paper from "@mui/material/Paper";
 import SummarizeOutlinedIcon from "@mui/icons-material/SummarizeOutlined";
 
+const backgroundColor = "hsl(221, 0%, 85%);";
+
 export default function FixedBottomNavigation() {
   const navigate = useNavigate();
 
@@ -20,7 +22,10 @@ export default function FixedBottomNavigation() {
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         elevation={3}
       >
-        <BottomNavigation showLabels>
+        <BottomNavigation
+          showLabels
+          sx={{ backgroundColor, boxShadow: "0 0 0.1rem 0rem black" }}
+        >
           <BottomNavigationAction
             label="New Room"
             icon={<SummarizeOutlinedIcon />}

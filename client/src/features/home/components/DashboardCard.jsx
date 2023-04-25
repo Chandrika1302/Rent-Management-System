@@ -4,9 +4,11 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Link } from "@mui/material";
 
+const backgroundColor = "hsl(221, 0%, 95%);";
+
 export default function BasicCard() {
   return (
-    <Card sx={{ minWidth: 275 }} variant="outlined">
+    <Card sx={{ minWidth: 275, backgroundColor }} variant="outlined">
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Welcome to
