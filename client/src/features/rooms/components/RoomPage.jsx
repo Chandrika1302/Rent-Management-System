@@ -5,7 +5,7 @@ import Grow from "@mui/material/Grow";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
@@ -40,7 +40,7 @@ function Room() {
   if (room == null && !fetching) {
     return (
       <Typography variant="h2" component="h2">
-        No Room Found
+        No Room Found, <Link to="/rooms">Back To All Rooms?</Link>
       </Typography>
     );
   }
