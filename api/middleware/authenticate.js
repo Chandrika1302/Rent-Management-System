@@ -4,7 +4,14 @@ const User = require("../models/User");
 module.exports = function authenticate(req, res, next) {
   const token = req.headers.authorization.split(" ")?.[1];
   const url = req.url;
-  const uncheckedRoutes = ["/api/login", "/api/logout", "/"];
+  const uncheckedRoutes = [
+    "/api/login",
+    "/api/logout",
+    "/",
+    "/about",
+    "/api/signup",
+    "/api/signout",
+  ];
 
   if (!token) {
     if (uncheckedRoutes.includes(url)) {

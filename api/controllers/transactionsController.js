@@ -24,7 +24,7 @@ exports.detail = async function (req, res) {
 };
 exports.create_post = async function (req, res) {
   const user = req.user;
-  const room = await Room.findOne({ number: req.body.room });
+  const room = await Room.findOne({ number: req.body.room, user });
   const moneyToOwner = req.body.moneyToOwner;
   const moneyFromOwner = req.body.moneyFromOwner;
   const previousBalance = room.balance;

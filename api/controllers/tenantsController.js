@@ -25,7 +25,7 @@ exports.create_post = async function (req, res) {
   const address = req.body.address;
   const user = req.user;
 
-  const roomAlreadyPresent = await Room.findOne({ number: roomNumber });
+  const roomAlreadyPresent = await Room.findOne({ number: roomNumber, user });
   if (!roomAlreadyPresent) {
     return res.json({ error: { code: 403, message: "Room Not Found" } });
   }
@@ -41,7 +41,7 @@ exports.create_post = async function (req, res) {
     });
   }
 
-  const room = await Room.findOne({ number: roomNumber });
+  const room = await Room.findOne({ number: roomNumber, user });
   const tenant = new Tenant({
     name,
     phoneNumber,

@@ -16,12 +16,14 @@ function Layout({ children }) {
 
   const path = useLocation().pathname;
 
+  const ignoredPaths = ["/login", "/signup"];
+
   useEffect(() => {
-    if (user == null && path != "/login") {
+    if (user == null && !ignoredPaths.includes(path)) {
       return navigate("/login");
     }
 
-    if (user !== null && path == "/login") {
+    if (user !== null && ignoredPaths.includes(path)) {
       return navigate("/");
     }
   }, [path, user]);
