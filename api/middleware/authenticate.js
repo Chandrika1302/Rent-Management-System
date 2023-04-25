@@ -17,6 +17,12 @@ module.exports = function authenticate(req, res, next) {
     if (uncheckedRoutes.includes(url)) {
       return next();
     }
+    return res.json({
+      error: {
+        code: 403,
+        message: "Token Missing from request",
+      },
+    });
   }
 
   jwt.verify(token, process.env.TOKEN_KEY, (err, data) => {

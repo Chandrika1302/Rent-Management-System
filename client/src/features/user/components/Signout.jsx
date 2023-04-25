@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../userSlice";
 import Button from "@mui/material/Button";
 import { useSelector } from "react-redux";
+import Typography from "@mui/material/Typography";
+
 import { selectUserName, selectToken } from "../userSlice";
 import {
   showErrorToast,
@@ -21,8 +23,14 @@ export default function Signout() {
 
   return (
     <div>
+      <Typography variant="h6" sx={{ mb: 2 }}>
+        This will delete all the rooms, tenanat and other associated data with
+        your account. This action is irreversible.
+      </Typography>
+
       <Button
         variant="outlined"
+        color="error"
         onClick={() => {
           deleteUser(user, navigate, token);
         }}

@@ -59,9 +59,9 @@ exports.signout_post = async function (req, res) {
   const user = req.user;
 
   await User.findOneAndDelete({ username: user.username });
-  await Transaction.deleteMany({ username: user.username });
-  await Room.deleteMany({ username: user.username });
-  await Tenant.deleteMany({ username: user.username });
+  await Transaction.deleteMany({ user });
+  await Room.deleteMany({ user });
+  await Tenant.deleteMany({ user });
 
   res.json({ data: { message: "success" } });
 };

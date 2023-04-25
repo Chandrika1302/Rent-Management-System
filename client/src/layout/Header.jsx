@@ -57,7 +57,7 @@ const ResponsiveAppBar = () => {
       url: displayUsername ? "/logout" : "/login",
     },
     {
-      name: displayUsername ? "Delete" : "Signup",
+      name: displayUsername ? "Delete User" : "Signup",
       url: displayUsername ? "/signout" : "/signup",
     },
   ];
