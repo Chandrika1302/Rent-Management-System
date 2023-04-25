@@ -56,6 +56,13 @@ export default function TransactionCard({ transaction }) {
           >
             Balance Now: {transaction.presentBalance}
           </Typography>
+          <Typography
+            variant="h6"
+            component="p"
+            sx={{ color: "text", ml: 4, mt: 1, mb: 1 }}
+          >
+            Remarks: {transaction.remarks}
+          </Typography>
         </Paper>
       </CustomLink>
     </Box>

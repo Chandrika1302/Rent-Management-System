@@ -25,6 +25,12 @@ function AllTransactions() {
         { token }
       );
       const transactions = transactionsRaw.data?.transactions;
+
+      //sort properly according to dates
+      transactions.sort(function (a, b) {
+        return -(new Date(a.date) - new Date(b.date));
+      });
+
       const error = transactionsRaw.error?.message;
       if (error) {
         showErrorToast(error);
