@@ -7,8 +7,7 @@ export default [
   {
     name: "Rasool",
     intro: "The Magistrate",
-    contribution:
-      "React and redux integrations with some contribution in backend",
+    contribution: "React and Redux integrations",
   },
   {
     name: "Sumeetha",
